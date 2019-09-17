@@ -49,14 +49,12 @@ class LRUCache<T: Hashable, V> {
             //otherwise just add
             _add(object: object, withKey: key)
         }
-        printDetails()
     }
     
     func getObject(forKey key: T) -> V? {
         if let object = cache[key] {
             _removeObject(withKey: key)
             _add(object: object.value, withKey: key)
-            printDetails()
             return object.value
         }
         return nil
@@ -96,19 +94,6 @@ class LRUCache<T: Hashable, V> {
             count -= 1
         }
     }
-    
-    private func printDetails() {
-        print("CACHE")
-        cache.forEach {
-            print("\($0), \($1.value)")
-        }
-        
-        print("QUEUE")
-        var currentNode = head
-        while(currentNode != nil) {
-            print("\(currentNode!.key), \(currentNode!.value)")
-            currentNode = currentNode?.next
-        }
-    }
+
 }
 
